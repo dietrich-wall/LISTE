@@ -1,0 +1,46 @@
+<%# 
+
+This View renders a List of Categories, Items or Users
+
+1. Check if at least one Object has been passed
+2. Check if @param { locals.doc } Object has unique entry 
+3. Render specific Partial View
+
+@param { locals.doc } Object
+%>
+
+<!-- center content -->
+<div class="container-fluid">
+    <!-- if Object exists -->
+    <% if(typeof locals.doc[0] != 'undefined') { %>
+
+
+        <div class="row ">
+            <!-- if Category -->
+            <%if(typeof locals.doc[0].level != 'undefined') { %> <%-
+            include('./partials/resources/category/list.category.ejs') %> <% } %>
+
+            <!-- if Item -->
+            <%if(typeof locals.doc[0].AlphNumId != 'undefined') { %> <%-
+            include('./partials/resources/item/list.item.ejs') %> <% } %>
+
+            <!-- if User -->
+            <%if(typeof locals.doc[0].role != 'undefined') { %> <%-
+            include('./partials/resources/user/list.user.ejs') %> <% } %> 
+
+            <!-- if expo -->
+            <%if(typeof locals.doc[0].members != 'undefined') { %> <%-
+            include('./partials/resources/expo/list.expo.ejs') %> <% } %> 
+
+        </div>
+    
+    <% } else { %>
+        <div class="alert alert-warning alert-dismissible fade show">
+            Keine Einträge gefunden
+        </div>
+    <% } %>
+</div>
+
+
+
+

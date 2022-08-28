@@ -1,0 +1,17 @@
+<div class="card bg-light my-3" >
+    <h5 id="card_header" class="card-header">Historie geliehener Komponenten</h5>
+    <div id="card_sec_title" class="card-header">  </div>
+
+    <div class="card-body">
+        <% for (const [key, value] of Object.entries(rentedItemsHistory)) {%> 
+            
+            <a  class="my-2 list-group-item stretched-link text-decoration-none" href="<%= "/item/" + value._id  %>">
+                <p class=" text-muted card-title text-truncate "><%= value.name %></p>          
+                <h6 class="text-muted card-subtitle">ID: <%= value.AlphNumId %></h6>
+            </a>
+        <% } %> 
+    </div>
+
+  <div id="card_sec_title" class="card-footer">  </div>
+  <div id="card_header" class="card-footer">  </div>
+</div> 

@@ -1,0 +1,66 @@
+<%# 
+
+This View renders a List of Categories
+
+1. Iterate through the passed Object @param { locals.doc }
+2. Access data through @param { value.x } 
+
+@param { value._id } Object unique ID
+@param { value.name } 
+@param { value.description }
+@param { value.level }
+@param { value.tags }
+
+%> 
+
+  
+<!-- Iterate through the Object -->
+<% for (const [key, value] of Object.entries(doc)) {%> 
+
+<!-- create one CSS card for each entrie in the passed Object -->
+<div class="col p-2">
+  <div class="card" >
+  
+    <!-- Header with category name -->
+    <div id="card_header" class="card-header text-truncate"><%= value.name %></div>
+    <div id="card_sec_title" class="card-header">  </div>
+
+
+    <!-- Body with picture and description -->
+    <div class="card-body">
+      <!-- Image -->
+      <img class="w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image">
+      <!-- Description -->
+      <span class="p-1 d-inline-block text-truncate" style="max-width: 16rem;">
+        <%- value.description %>
+      </span>
+    </div>
+
+    <!-- Buttons for further category or all items -->
+    <div class="card-footer">
+      <!-- Display Link Button to all Items in this Category -->
+      <form name="submitForm" method="POST" action="<%= "/item/" + value._id %>" class="p-1">    
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-outline-secondary form-control" type="submit"> Alle Komponenten </button>
+            </div>
+        </div>
+      </form> 
+
+      <!-- Display Link Button to Child Categories -->
+      <% if ( value.level < 3) { %>  
+        <form name="submitForm" method="POST" action="<%= "/category/next" %>" class="p-1">    
+          <div class="row">
+              <div class="col">
+                  <input type="hidden" name="categoryTags" value="<%- value._id %>"/>
+                  <input type="hidden" name="level" value="<%= value.level + 1 %>"/>
+                  <button class="btn btn-outline-secondary form-control" type="submit"> Weitere Kategorien </button>
+              </div>
+          </div>
+        </form>
+      <% } %> 
+    </div>
+
+  </div>
+</div>
+<% } %> 

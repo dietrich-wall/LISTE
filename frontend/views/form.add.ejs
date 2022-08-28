@@ -1,0 +1,40 @@
+<!-- Check if form type variable has been passed -->
+<% if(typeof locals.form != 'undefined') { %>
+
+
+    <!-- center content -->
+    <div class="row justify-content-center">
+        <div class="col-md-7 offset-md-0 offset-xxl-0 text-center center-block">
+            <div class="row justify-content-center">
+                <div class="col  text-center center-block">
+
+                    
+                <!-- Check form type variable and render specific Partial View  -->
+
+                <!-- if Category -->
+                <%if(locals.form == 'add.category') { %> <%-
+                include('./partials/resources/category/forms/add.category.ejs') %> <% } %>
+
+                <!-- if Item -->
+                <%if(locals.form == 'add.item') { %> <%-
+                include('./partials/resources/item/forms/add.item.ejs') %> <% } %>
+
+                <!-- if User -->
+                <%if(locals.form == 'add.user') { %> <%-
+                include('./partials/resources/user/forms/add.user.ejs') %> <% } %> 
+
+                <!-- if add expo -->
+                <%if(locals.form == 'add.expo') { %> <%-
+                include('./partials/resources/expo/forms/add.expo.ejs') %> <% } %> 
+
+                <!-- if edit expo -->
+                <%if(locals.form == 'edit.expo') { %> <%-
+                    include('./partials/resources/expo/forms/edit.expo.ejs') %> <% } %> 
+
+                    
+                </div>  
+            </div>
+        </div>
+    </div>
+    
+<% } %>

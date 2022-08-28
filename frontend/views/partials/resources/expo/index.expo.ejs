@@ -1,0 +1,46 @@
+
+
+<div class="container pb-4">
+    <a class="btn btn-outline-secondary" href="/expo"><i class="fa-solid fa-arrow-left mx-1"></i> Zurück zur Übersicht</a> 
+</div>
+   
+<!-- Tab Links -->
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active text-secondary" role="tab" data-bs-toggle="tab" href="#tab-1">
+            <i class="fa-regular fa-rectangle-list mx-1"></i>Details</a></li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link text-secondary" role="tab" data-bs-toggle="tab" href="#tab-2">
+            <i class="fa-solid fa-file-arrow-down mx-1"></i>Unterlagen</a></li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link text-secondary" role="tab" data-bs-toggle="tab" href="#tab-3">
+            <i class="fa-solid fa-user-group mx-1"></i>Team</a></li>
+</ul>
+
+<!-- Tab Body -->
+<div class="tab-content">
+
+    <!-- Tab - details -->
+    <div class="tab-pane active" role="tabpanel" id="tab-1">
+        <%- include('./details.expo.ejs') %>
+    </div>
+
+
+    <!-- Tab - documents -->
+    <div class="tab-pane" role="tabpanel" id="tab-2">
+        <%- include('./documents.expo.ejs') %>
+    </div>
+
+    <!-- Tab - group -->
+    <div class="tab-pane " role="tabpanel" id="tab-3">
+        <%- include('./group.expo.ejs') %>
+    </div>
+
+</div>
+
+<div>
+    <%- include('../../common/footer.ejs') %> 
+</div>
+
+
+

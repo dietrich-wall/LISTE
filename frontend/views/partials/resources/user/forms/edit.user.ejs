@@ -1,0 +1,90 @@
+<%# 
+
+This View renders Edit Forms for an Item
+
+Access data through @param { locals.doc.x } 
+
+@param { doc._id } Object unique ID
+@param { doc.name } 
+@param { doc.room }
+@param { doc.shelf }
+@param { doc.description }
+@param { doc.AlphNumId }
+@param { doc.qrSvg }
+@param { doc.isAvailable }
+@param { doc.takenTo }
+
+%> 
+ 
+<!-- Hidden POST Form to Update Route -->
+
+
+<div class="list-group my-1"> 
+
+    <!-- Edit grop -->
+    <a href="#group" class="list-group-item list-group-item-action" data-bs-toggle="collapse">Klasse</a>
+    <div class="collapse" id="group"> 
+
+        <!-- POST Form -->
+        <form name="submitForm" method="POST" action="<%= "/user/update/" + doc._id %>" >    
+        <div class="row my-2">
+            <div class="col ">
+                <input
+                type="text"
+                class="form-control"
+                name="group"
+                value="<%= doc.group %>"
+                placeholder="<%= doc.group %>"
+                />
+            </div>
+            <div class="col">
+                <button class="btn-outline-secondary form-control" type="submit" > Ändern </button>
+            </div>
+        </div>
+        </form>
+
+    </div> 
+
+    <!-- Edit Role - Select user role -->
+    <a href="#role" class="list-group-item list-group-item-action" data-bs-toggle="collapse">Benutzer Rolle</a>
+    <div class="collapse" id="role"> 
+        <div class="col my-2">
+
+            <!-- POST Form -->
+            <form name="submitForm" method="POST" action="<%= "/user/update/" + doc._id %>" > 
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="student" <% if(doc.role === "student") { %> checked <% } %> >
+                    <label class="form-check-label" for="inlineRadio1">Student</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="editor" <% if(doc.role === "editor") { %> checked <% } %> >
+                    <label class="form-check-label" for="inlineRadio2">Editor</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="role" id="inlineRadio3" value="admin" <% if(doc.role === "admin") { %> checked <% } %> >
+                    <label class="form-check-label" for="inlineRadio3">Admin</label>
+                </div>  
+                <div class="form-check form-check-inline">
+                    <button class="btn-outline-secondary form-control" type="submit" > Edit </button>
+                </div>
+            </form>
+
+        </div>
+    </div> 
+
+
+    <!-- Hidden POST Button to Delete Route -->
+    <a href="#delete" class="list-group-item list-group-item-action mt-3" data-bs-toggle="collapse">Benutzer Löschen</a>
+    <div class="collapse" id="delete">
+        <div class="col mt-2">
+            <p>Achtung! Alle Komponenten die noch an den Benutzer verliehen sind werden auf die "Home Position" zurückgesetzt.</p>
+            <form class="p-1" name="submitForm" method="POST" action="<%= "/user/delete/" + doc._id %>">    
+                <button class="btn btn-danger form-control" type="submit" >Unwiderruflich löschen</button>
+            </form>
+        </div>
+    </div>
+
+</div> 
+
+
+

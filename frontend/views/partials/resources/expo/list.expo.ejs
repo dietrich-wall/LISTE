@@ -1,0 +1,23 @@
+ <!-- Iterate through the Object -->
+  <% for (const [key, value] of Object.entries(doc)) {%> 
+    <%# console.log(locals.doc[index].room) %> 
+      
+    <div class="col p-2 ">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header" style="background-color: rgba(95, 106, 112, 0.133);"><%= value.name %></div>
+          <div class="card-body"  style="color: #112d4e;">
+            <!-- Image -->
+            <!-- <img class="w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image"> -->
+    
+            <h6 class="card-text">Etage: <%= value.floor %></h6>
+            <h6 class="card-text" >Raum: <%= value.room %></h6>
+          </div>
+          <div class="card-footer">
+          <a href="<%= "/expo/" + value._id %>" class="btn btn-primary form-control"</a>Details</a>
+        </div>
+      </div>
+    </div>
+    
+
+  <% } %> 
+  

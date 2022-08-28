@@ -1,0 +1,34 @@
+<%# 
+
+This View renders a List of Items
+
+1. Iterate through the passed Object @param { locals.doc }
+2. Access data through @param { value.x } 
+
+@param { value._id } Object unique ID
+@param { value.name } 
+@param { value.room }
+@param { value.shelf }
+@param { value.description }
+@param { value.AlphNumId }
+@param { value.qrSvg }
+
+%> 
+
+    <!-- Iterate through the Object -->
+  <% for (const [key, value] of Object.entries(doc)) {%> 
+   
+      <div class="col p-2">
+        <div class="card" >
+          <div id="card_header" class="card-header text-truncate"><%= value.name %></div>
+          <div id="card_sec_title" class="card-header">  </div>
+
+          <a class="card-body stretched-link text-decoration-none" href="<%= "/item/" + value._id  %>">
+              <h6 class="text-muted card-subtitle mb-2">ID: <%= value.AlphNumId %></h6>
+              <p class="card-text text-muted text-truncate "><%= value.description %></p>          
+          </a>
+        </div>
+      </div>
+    
+
+  <% } %> 

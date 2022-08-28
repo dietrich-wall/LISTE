@@ -1,0 +1,84 @@
+
+
+<!-- navigation bar -->
+<header class="py-3">
+
+  <div class="row justify-content-center">
+    <div class="col-xl-8">
+    <div class="navbar navbar-light bg-light">
+      <nav class="container-fluid py-2 justify-content-between">
+
+        <ul class="navbar-nav flex-row">
+
+          <!-- logo and link to all main categories -->
+          <a href="/category/all">
+            <img  src="/img/logo_klein.png">
+          </a>
+
+          <!-- Navigation items - all main catergories-->
+
+          <li class="nav-item px-1">
+            <a class="nav-link" href = "/category/all"> Kategorien </a>
+          </li>
+
+          <!-- Navigation items - User Dashboard-->
+          <li class="nav-item  px-1">
+            <a class="nav-link" href = "/"><i class="fas fa-regular fa-user px-1"></i> Profil </a>
+          </li>          
+        </ul>
+
+        <!-- logout button -->
+        <ul class="navbar-nav flex-row">
+          <li class="nav-item">
+          <form method="POST" action="/logout">
+                <button type="submit" class="btn btn-outline-secondary mx-1">Logout</button>
+          </form> 
+          </li>
+        </ul>
+        
+      </nav>
+    </div>
+    </div>
+
+  </div>
+
+</header> 
+
+<div class="row justify-content-center">
+  <div class="col-xl-8">
+<!-- Item search FORM -->
+    <form method="POST" action="/item/items" onsubmit="return validate()" class="input-group my-1">
+
+      <!-- search type selection -->
+      <div class="form-check form-check-inline my-2 mx-2">
+        <input class="form-check-input" type="radio" name="searchType" id="inlineRadio2" value="name" checked>
+        <label class="form-check-label" for="inlineRadio2">Name</label>
+      </div>
+      <div class="form-check form-check-inline my-2">
+          <input class="form-check-input" type="radio" name="searchType" id="inlineRadio1" value="id">
+          <label class="form-check-label" for="inlineRadio1">ID</label>
+      </div>
+      <!-- input field -->
+      <input id="searchInput" name="search" class="form-control" type="search" placeholder="Komponenten suchen...">
+      <!-- search submit button -->
+      <button class="btn btn-outline-secondary " type="submit">
+          <i class="fas fa-magnifying-glass fa-lg"></i>
+      </button>
+      
+    </form>
+    </div>
+
+</div>
+
+<!-- only submit if search input is not empty -->
+<script>
+
+function validate() {
+    if (document.getElementById("searchInput").value == "") {
+         return false;
+    } else {
+        return true;
+    }
+}
+
+</script>

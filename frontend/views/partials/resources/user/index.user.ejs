@@ -1,0 +1,59 @@
+<%# 
+
+This View renders a Single User
+
+Access data through @param { locals.doc.x } 
+
+@param { doc._id } Object unique ID
+@param { doc.email } 
+
+%> 
+
+
+<% if (typeof user != "undefined") {%>   
+
+      <!-- User Profile Page - Display only to this user and admin -->
+    <% if (locals.user._id.equals(doc._id) || user.role === "admin") { %>
+
+        <!-- Tab Links -->
+        <ul class="nav nav-tabs" role="tablist">
+
+            <li class="nav-item" role="presentation"><a class="nav-link active text-secondary" role="tab" data-bs-toggle="tab" href="#tab-1">
+                <i class="fa-regular fa-rectangle-list mx-1"></i> Dashboard</a></li>
+            
+            <%# Rent-History Tab - Display only to this user and admin %>   
+            <li class="nav-item" role="presentation"><a class="nav-link text-secondary" role="tab" data-bs-toggle="tab" href="#tab-3">
+                <i class="fa-solid fa-clock-rotate-left mx-1"></i> Historie</a></li>
+            
+            <li class="nav-item" role="presentation">
+                <a class="nav-link text-secondary" role="tab" data-bs-toggle="tab" href="#tab-4"><i class="fa-solid fa-gear mx-1">
+                </i> Account</a></i>
+            </li>
+
+        </ul>
+
+        <!-- Tab Body -->
+        <div class="tab-content">
+            
+          
+            <!-- display role based options and currently rented items -->
+            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                <%-include('./dashboard.user.ejs') %>
+            </div> 
+            
+
+            <!-- Tab - History -->
+            <!-- display items rented in the past -->
+            <div class="tab-pane " role="tabpanel" id="tab-3">
+                <%-include('./history.user.ejs') %>
+            </div>
+
+            <!-- Tab - User Details -->
+            <div class="tab-pane" role="tabpanel" id="tab-4">
+                <%-include('./details.user.ejs') %>
+            </div>
+
+        </div>
+
+    <% } %>   
+<% } %> 

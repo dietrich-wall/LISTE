@@ -1,0 +1,42 @@
+<!-- main card -->
+<div class="card bg-light my-3" >
+    <h5 id="card_header" class="card-header">Technische Dokumente</h5>
+    <div id="card_sec_title" class="card-header">  </div>
+
+    <div class="card-body">  
+
+        <% if (typeof user != undefined && user.role === "admin") { %>
+        <!-- Hidden POST Button to add hyperlink to item DB entry -->
+        <a href="#changepw" class="list-group-item list-group-item-action mt-3" data-bs-toggle="collapse">Hyperlink hinzufügen </a>
+        <div class="collapse" id="changepw">
+            <!-- POST Form -->
+            <form name="submitForm" method="POST" action="<%= "/item/addurl/" + doc._id %>" >    
+                <div class="row my-2">
+                    <div class="mb-3">
+                        <input class="form-control" type="text" name="techDocName" placeholder="Name des Documents"/>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" type="text" name="techDocURL" placeholder="URL z.b. https://www.google.de"/>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn-outline-secondary form-control" type="submit" > Hinzufügen </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <% } %> 
+        <div class="p-2"></div>
+        <!-- QR Code Download Link -->
+            <a href="/item/download/<%- doc._id %>" class="btn btn-outline-secondary form-control my-2">QR Code Herunterladen</a>
+        <li class="list-group my-1">
+        <% if (typeof doc.techDocURL != "undefined" && typeof doc.techDocName != "undefined") { %>
+            <% for (const [key, value] of Object.entries(doc.techDocName)) {%> 
+                <a href="<%= doc.techDocURL[key] %>" class="btn btn-outline-secondary form-control my-1"><%= value %></a>
+            <% } %> 
+        <% } %> 
+        </li>
+    </div>
+
+  <div id="card_sec_title" class="card-footer">  </div>
+  <div id="card_header" class="card-footer">  </div>
+</div>

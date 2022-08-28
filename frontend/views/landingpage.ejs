@@ -1,0 +1,119 @@
+
+<!-- Liste logo -->
+<div class="row justify-content-center pb-4">
+  <div class="col-md-7 ">
+    <img
+      class="img-fluid"
+      src="/img/logo_liste_groß_sw.png"
+      style="transform: scale(0.7);"
+    />  
+  </div>
+</div>
+
+<%-include('./partials/common/expoAdvertisement.ejs') %>
+<%-include('./partials/common/listeAdvertisement.ejs') %>
+
+<!-- center content -->
+<div class="row justify-content-center">
+  <div class="col-md-7 offset-md-0 offset-xxl-0 text-center center-block">
+
+    <!-- Tab Links -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation"><a class="nav-link active text-secondary" role="tab" data-bs-toggle="tab" href="#tab-1">
+        Log In</a></li>
+      <li class="nav-item" role="presentation"><a class="nav-link text-secondary" role="tab" data-bs-toggle="tab" href="#tab-2">
+         Sign Up</a></li>
+    </ul>
+
+    <!-- Tab Body -->
+    <div class="tab-content">
+
+      <!-- Login Tab -->
+      <div class="tab-pane active" role="tabpanel" id="tab-1">
+        <%-include('./partials/auth/login.ejs') %>
+      </div>
+
+
+      <!-- Register Tab -->
+      <div class="tab-pane" role="tabpanel" id="tab-2">
+        <%-include('./partials/auth/signup.ejs') %>
+      </div>
+      
+    </div>
+
+  </div>
+</div> 
+
+
+<!-- footer -->
+<div id="lp_div">
+  <div class="container" id="lp_features">
+
+    <div class="row">
+      <div class="col-md-12">
+        <h1
+          id="funktionen_lp"
+          style="
+            text-align: center;
+            font-family: Montserrat, sans-serif;
+            font-weight: bold;
+            padding-bottom: 50;">
+          Funktionen
+        </h1>
+      </div>
+    </div>
+
+    <div class="row" id="funktionen_uebersicht_lp" style="text-align: center">
+      <!-- pic 1 -->
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col">
+            <picture
+              ><img
+                class="img-fluid"
+                src="/img/DSCF0085.jpg"
+                style="width: 80%"
+            /></picture>
+            <p class="my-1" style="font-weight: bold; font-size: 19px">Verwaltung von Laborkomponenten</p>
+            <p>Laborkomponenten aufnehmen und lokalisieren</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- pic 2 -->
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col">
+            <picture
+              ><img
+                class="img-fluid"
+                src="/img/DSCF0100.jpg"
+                style="width: 80%"
+            /></picture>
+            <p class="my-1" style="font-weight: bold; font-size: 19px">Buchungs- und Meldesystem</p>
+            <p>Laborkomponenten ausleihen und Mängel melden</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- pic 3 -->
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col">
+            <picture
+              ><img
+                class="img-fluid"
+                src="/img/DSCF0107.jpg"
+                style="width: 80%"
+            /></picture>
+            <p class="my-1" style="font-weight: bold; font-size: 19px">Weiterführende Informationen<br /></p>
+            <p>
+              Datenblätter und Handbücher <br> einsehen und hinzufügen
+            </p>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+

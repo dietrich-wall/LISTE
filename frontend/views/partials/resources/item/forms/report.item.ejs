@@ -1,0 +1,40 @@
+<ul class="list-group">
+    <!-- Hidden POST Button to add hyperlink to item DB entry -->
+    <a href="#report" class="list-group-item list-group-item-action mt-1 " data-bs-toggle="collapse"> Komponente fehlt oder ist beschädigt? </a>
+    <div class="collapse" id="report">
+    <div class="my-2"><span> Die Meldung erfolgt durch einen automatischen Email versand %></span></div>
+
+        <ul class="list-group mx-2">
+            
+            <!-- Hidden POST Button to add hyperlink to item DB entry -->
+            <a href="#missing" class="list-group-item list-group-item-action mt-1" data-bs-toggle="collapse"> Komponente fehlt </a>
+            <div class="collapse" id="missing">
+                <!-- POST Form -->
+                <form name="submitFormMissing" method="POST" action="<%= "/item/report/" + doc._id + "-" + user._id %>" >    
+                    <div class="row my-2">
+                        <div class="mb-1 px-5">
+                            <button class="btn btn-danger form-control" type="submit" > Melden </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Hidden POST Button to add hyperlink to item DB entry -->
+            <a href="#demaged" class="list-group-item list-group-item-action mt-1" data-bs-toggle="collapse"> Komponente beschädigt </a>
+            <div class="collapse" id="demaged">
+                <!-- POST Form -->
+                <form name="submitFormDemaged" method="POST" action="<%= "/item/report/" + doc._id + "-" + user._id %>" >    
+                    <div class="row my-2">
+                        <div class="mb-2">
+                            <textarea class="form-control" name="description" id="" rows="2" placeholder="Beschreibe den Schaden..."></textarea>
+                        </div>
+                        <div class="mb-1 px-5">
+                            <button class="btn-danger form-control" type="submit" > Melden </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+        </ul>
+    </div>
+</ul>

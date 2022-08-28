@@ -1,0 +1,44 @@
+<!-- Display rent button according to location of the item -->
+<% if(doc.room === doc.currentLocation) { %>
+    <!-- Item available, display "rent" button -->
+    <li class="list-group">
+        <a href="#group" class="btn btn-success mt-3" data-bs-toggle="collapse">Ausleihen</a>
+    </li>
+    <div class="collapse" id="group"> 
+        <p class="mt-2">Wohin wird die Komponente verliehen? <br> Bitte eine Raumnummer hinterlegen.</p>
+        <!-- POST Form -->
+        <form class="list-group" name="submitForm" method="POST" action="<%= "/item/rent/" + doc._id %>" >    
+        <div class="row">
+            <div class="col ">
+                <input type="text" class="form-control" name="currentLocation" placeholder="Raumnummer"/>
+                <input type="hidden" name="isWith" value="<%= user._id %>"/>
+            </div>
+            <div class="col">
+                <button class="btn-primary form-control" type="submit" > Bestätigen </button>
+            </div>
+        </div>
+        </form>
+    </div> 
+
+<!-- Item taken by this user, display "return" button -->
+<% } else if (user._id.equals(doc.isWith)) { %> 
+    <div class="col mt-3">
+        <form class="list-group" name="submitForm" method="POST" action="<%= "/item/return/" + doc._id %>" >
+            <input type="hidden" name="homeLocation" value="<%= doc.room %>"/>
+            <button class="btn btn-success" type="submit" > Zurückgeben </button>
+        </form>
+    </div> 
+
+<!-- Item taken by other user, display romm-number the item was taken to -->
+<% } else { %> 
+    <li class="list-group">
+        <p class="list-group-item bg-warning mt-3">Komponente ist im Raum: <%= doc.currentLocation %></p>
+    </li>
+<% } %> 
+
+<!-- If item is taken and user is admin, display link to the user who rented the item -->
+<% if (typeof user != "undefined" && user.role === "admin" && doc.isWith != null) { %>
+    <li class="list-group">
+        <a class="btn btn-warning my-1" href="/user/<%- doc.isWith %>">Leihnehmer Aufrufen</a>
+    </li>
+<% } %> 

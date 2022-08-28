@@ -1,0 +1,123 @@
+<div class="card bg-light my-3" >
+  <h5 id="card_header" class="card-header">
+
+    <%# get first name from email and  capitalize it%> 
+    <% const name = doc.email.substr(0, doc.email.indexOf('.')); %> 
+    <% const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1); %> 
+    
+    <!-- Display welcome message -->
+    <% if (locals.user._id.equals(doc._id)) { %>
+      Willkommen <%= capitalizedName  %>
+    <% } %> 
+
+    <!-- Display user name to admin -->
+    <% if (!locals.user._id.equals(doc._id) && user.role === "admin") { %>
+      Dashboard von  <%= capitalizedName %>
+    <% } %> 
+  </h5>
+  <div id="card_sec_title" class="card-header">  </div>
+
+  <div class="card-body">   
+
+    <%-include('../../common/expoAdvertisement.ejs') %>
+
+    <!-- Display role based options -->
+    <% if (locals.user._id.equals(doc._id)) { %>
+    <div class="card">
+
+        <p id="card_sec_title" class="card-header"> In deiner Rolle als <strong><%= doc.role %></strong> kannst du  </p>
+      <div class="card-body p-1">
+        <% if (locals.user._id.equals(doc._id)  && (user.role === "admin" || user.role === "editor")) { %>
+        <!-- Links to add database entry -->
+        <a href="#add" class="list-group-item list-group-item-action my-3" data-bs-toggle="collapse">Datenbankeinträge hinzufügen</a>
+        <div class="collapse" id="add"> 
+            <ul class="list-group px-5">
+                <a href="/item/form/add" class="list-group-item list-group-item-action mt-1" ><i class="fa-solid fa-screwdriver-wrench mx-1"></i> Komponente</a>
+                <% if (user.role === "admin") { %>  
+                  <a href="/category/form/add" class="list-group-item list-group-item-action" ><i class="fa-solid fa-list mx-1"></i> Kategorie</a>
+                    <a href="/user/form/add" class="list-group-item list-group-item-action mb-3" ><i class="fa-solid fa-user mx-1"></i> Benutzer</a>
+                <% } %> 
+            </ul>
+        </div>
+        <% } %> 
+        <!-- display user search options to admin -->
+        <% if (locals.user._id.equals(doc._id) && user.role === "admin") { %>  
+        <a href="#findUser" class="list-group-item list-group-item-action" data-bs-toggle="collapse">
+          Benutzer suchen</a>
+        <div class="collapse" id="findUser">
+            <%-include('./forms/search.user.ejs') %>
+        </div> 
+        <!-- if admin or user how created this expo -->
+        <a href="#findExpo" class="list-group-item list-group-item-action my-3" data-bs-toggle="collapse">
+          Projektgruppe suchen und editieren</a>
+        <div class="collapse" id="findExpo">
+            <%-include('../expo/forms/search.expo.ejs') %>
+        </div>
+        <% } %> 
+        
+        <% if (locals.user._id.equals(doc._id) && user.role === "admin" || (locals.user._id.equals(doc._id) && doc.expo === "") ) { %> 
+        <!-- add expo -->
+        <a href="#addExpo" class="list-group-item list-group-item-action my-3" data-bs-toggle="collapse"> 
+          Projektgruppe für das Technikerforum anmelden</a>
+          <div class="collapse" id="addExpo"> 
+              <ul class="list-group px-3">
+                <form class="text-center my-4" method="POST" action="/expo/form/" style="text-align: center">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelect01">Teilnehmer</label>
+                        </div>
+                            <select name="membersCount" class="custom-select form-control" id="inputGroupSelect01">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option selected value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Anmelden</button>
+                            </div>
+                        </div>
+                      
+                  </form>
+              </ul>
+          </div>
+        <% } %> 
+        
+        <% if (user.role != "admin" && locals.user._id.equals(doc._id) && doc.expo != "") { %> 
+          <a href="#editMyExpo" class="list-group-item list-group-item-action py-2" data-bs-toggle="collapse">
+            Meine Projektgruppe editieren</a>
+          <div class="collapse" id="editMyExpo">
+            <form class="text-center my-3" method="POST" action="/expo/form/edit" style="text-align: center">
+              <input type="hidden" name="search" value="<%= doc.expo %>" >
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Formular öffnen</button>
+            </div>
+            </form>
+          </div>
+        <% } %> 
+
+      </div>
+
+    </div>
+    <% } %> 
+
+    <!-- List of currently rented items -->
+    <div class="card bg-light my-3">
+      <p id="card_sec_title" class="card-header">Akutell geliehene Komponente</p>
+        <div class="card-body">
+            <div class="list-group ">
+                <% for (const [key, value] of Object.entries(rentedItems)) {%> 
+                      <a  class="my-1 list-group-item stretched-link text-decoration-none" href="<%= "/item/" + value._id %>">
+                        <p class=" text-muted card-title text-truncate "> <%= value.name %></p>          
+                      </a>
+                <% } %> 
+            </div>
+          </div>
+
+    </div>
+    
+  </div>
+
+  <div id="card_sec_title" class="card-footer">  </div>
+  <div id="card_header" class="card-footer">  </div>
+</div>

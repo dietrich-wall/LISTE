@@ -1,0 +1,35 @@
+
+<div class="row justify-content-center p-3">
+    <div class="container-fluid">
+
+        <form method="POST" action="/expo/form/edit" onsubmit="return validateInput()" class="form-inline input-group mt-2">
+
+            <div class="col-11">
+                <!-- input field -->
+                <input id="expoSearchInput" name="search" class="form-control" type="search" 
+                placeholder="Projektgruppe nach id suchen...">
+                <!-- search submit button -->
+            </div>
+
+            <div class="col-1">   
+                <button class="btn btn-outline-secondary " type="submit">
+                    <i class="fas fa-magnifying-glass fa-lg"></i>
+                </button>
+            </div>
+
+        </form>
+        
+    </div>
+</div>
+
+<!-- only submit if search input is not empty -->
+<script>
+
+function validateInput() {
+    if (document.getElementById("expoSearchInput").value == "") {
+        return false;
+    } else {
+        return true;
+    }
+}
+</script>

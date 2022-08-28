@@ -1,0 +1,41 @@
+<!-- main card -->
+<div class="card bg-light my-3" >
+    <h5 id="card_header" class="card-header"><%= doc.name %></h5>
+    <div id="card_sec_title" class="card-header">  </div>
+    <div class="card-body">   
+        
+        <div class="card">
+            <p id="card_sec_title" class="card-header"> Ausstellungsort </p>
+            <div class="card-body p-1">
+                Etage: <%= doc.floor %>
+                <br>
+                Raum: <%= doc.room %>                 
+            </div>
+        </div>
+
+
+        <!-- picture -->
+        <div class="row">                           
+            <div class="col py-3">
+                <img class="w-100 d-block" src="/expo/files/<%- doc.files.img %>">
+            </div>
+        </div>
+        
+        
+        
+        <!-- Item Description -->
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div id="card_sec_title" class="card-header"> Projektbeschreibung </div>
+                    <div class="card-body" style="text-align: start;"><%- doc.description %></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="card_sec_title" class="card-footer">  </div>
+    <div id="card_header" class="card-footer">  </div>
+ </div>

@@ -1,0 +1,164 @@
+<div class="list-group my-3"> 
+    
+    <h3 class="py-2">Projektgruppe editieren</h3>
+    <p class="alert alert-warning p-1">Bild und PDF Datein müssen immer Hochgeladen werden</p>
+    <!-- Submission Form -->
+    <form class="text-center my-2" method="POST" action="<%= "/expo/update/" + doc._id %>" enctype="multipart/form-data" onsubmit="return validateInput()" style="text-align: center">
+
+    <div class="illustration">
+        
+        <!-- division -->
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Fachgruppe</label>
+        </div>
+        <select name="division" class="custom-select form-control" id="inputGroupSelect01">
+            <option <% if(doc.division === "Elektro") { %> selected <% } %> value="Elektro">Elektrotechnik</option>
+            <option <% if(doc.division === "Mechanik") { %> selected <% } %> value="Mechanik">Maschinentechnik</option>
+            <option <% if(doc.division === "Metall") { %> selected <% } %> value="Metall">Metallbau- und Gebäudetechnik</option>
+        </select>
+        </div>
+
+        
+            <%# if ( key == "room" ) { %>
+            <%# console.log(doc.length) %> 
+
+            <%# console.log(value) %> 
+        <!-- Teilnemer -->
+        <h5 class="pt-2"></h5>
+        <% let i = 0 %> 
+        <% doc.members.forEach(member => { %>
+            <% i = i + 1 %> 
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <label class="input-group-text">Name <%= i  %></label>
+            </div>
+                <input class="form-control" type="text" id="inputGroupMembers" value="<%= member %>" name="members" placeholder="<%= member %>"/>
+            </div>
+        <% }) %>
+
+        <h5 class="pt-2"></h5>
+        <% let j = 0 %> 
+        <% doc.emails.forEach(email => { %>
+            <% j = j + 1 %> 
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <label class="input-group-text">Email <%= j  %></label>
+            </div>
+               <input class="form-control" type="email" id="inputGroupEmails" value="<%= email %>" name="emails" placeholder="<%= email %>"/>
+            </div>
+        <% }) %>
+
+
+
+
+
+        <h5 class="pt-2">Projektbezeichnung</h5>
+        <!-- Name field -->
+        <div class="input-group pt-1">
+        <div class="input-group-prepend">
+            <label class="input-group-text">Projektname  </label>
+        </div>
+        <input class="form-control" type="text" id="inputGroupName" value="<%= doc.name %>" name="name" placeholder="<%= doc.name %>"/>
+        </div>
+
+        <!-- description field -->
+        <div class="input-group pt-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text">Beschreibung</label>
+        </div>
+        <textarea class="form-control" rows="4" id="inputGroupDescription" value="<%= doc.description %>" name="description"><%= doc.description %></textarea>
+        </div>
+
+        <!-- pdf handout upload  -->
+        <h5 class="pt-3">Flyer oder Handout</h5>
+        <div class="input-group">
+            <input type="file" name="uploaded_pdf" class="custom-file-input input-group-append form-control" id="inputGroupPdf">
+            <div class="input-group-append">
+            <label class="input-group-text bg-warning" for="inputGroupSelect01">.pdf</label>
+            </div>
+        </div>
+        <!-- image upload -->
+        <h5 class="pt-3">Repräsentatives Bild der Projektarbeit</h5>
+        <div class="input-group">      
+            <input type="file" name="uploaded_img" class="custom-file-input input-group-append form-control" id="inputGroupImg">
+            <div class="input-group-append">
+            <label class="input-group-text bg-warning" for="inputGroupSelect01">.jpeg oder .png</label>
+            </div>
+        </div>
+
+        <!-- floor -->
+        <h5 class="pt-4">Ausstellungsort</h5>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Etage</label>
+        </div>
+        <select name="floor" class="custom-select form-control" id="inputGroupSelect01">
+            <option <% if(doc.floor === "UG") { %> selected <% } %> value="UG">UG</option>
+            <option <% if(doc.floor === "EG") { %> selected <% } %> value="EG">EG</option>
+            <option <% if(doc.floor === "1.OG") { %> selected <% } %> value="1.OG">1.OG</option>
+            <option <% if(doc.floor === "2.OG") { %> selected <% } %> value="2.OG">2.OG</option>
+            <option <% if(doc.floor === "3.OG") { %> selected <% } %> value="3.OG">3.OG</option>
+        </select>
+        </div>
+        
+        <!-- room field -->
+        <div class="input-group pb-4">
+        <div class="input-group-prepend">
+            <label class="input-group-text">Raum </label>
+        </div>
+        <input class="form-control" type="text" id="inputGroupRoom" value="<%= doc.room %>" name="room" placeholder="<%= doc.room %>"/>
+        </div>
+
+
+    <!--  submit -->
+        <div class="mt-4"> 
+            <button class="btn btn-primary border form-control" type="submit" >Editieren</button>
+        </div>
+
+        
+
+    </div>
+    </form>
+
+
+
+    <!-- Hidden POST Button to Delete Route -->
+    <li class="list-group mt-2">
+        <a href="#delete" class="list-group-item list-group-item-action" data-bs-toggle="collapse">Projektgruppe Löschen</a>
+        <div class="collapse" id="delete">
+            <form class="p-2" name="submitForm" method="POST" action="<%= "/expo/delete/" + doc._id %>">    
+                <button class="btn btn-danger form-control" type="submit" >Löschen</button>
+            </form>
+        </div>
+    </li>
+
+</div>
+
+<!-- prevent empty file input -->
+<script>
+
+    function validateInput() {
+  
+        let pdf = document.getElementById("inputGroupPdf").value;
+        let img = document.getElementById("inputGroupImg").value;
+        
+        if ( pdf == "" || img == "" ) {
+          return false;
+        } 
+        if (!pdf.match(/.pdf$/)) {
+          return false;
+        }
+  
+        if (!img.match(/.jpg$/)) {
+          if (!img.match(/.jpeg$/)) {
+            if (!img.match(/.png$/)) {
+              return false;
+            }
+          }
+        }
+  
+        return true;
+        
+    }
+    </script>

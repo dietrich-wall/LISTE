@@ -1,0 +1,29 @@
+<div class="p-3">
+  <% if (locals.error != undefined) { %>
+    <% if (locals.error.length > 0) { %>
+        <div class="alert alert-warning alert-dismissible fade show">
+            <i class="fa-solid fa-triangle-exclamation mx-1"></i><%- locals.error %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% } %>
+  <% } %>
+
+  <% if (locals.info != undefined) { %>
+    <% if (locals.info.length > 0) {%>
+        <div class="alert alert-info alert-dismissible fade show">
+          <%= locals.info %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% } %>
+  <% } %>
+
+  <% if (locals.success  != undefined) { %>
+    <% if (locals.success.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show">
+          <i class="fa-solid fa-circle-check mx-1"></i><%= locals.success %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% } %>
+  <% } %>
+
+</div>

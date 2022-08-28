@@ -1,0 +1,18 @@
+<div class="card bg-light my-3" >
+    <h5 id="card_header" class="card-header" >Chronologische Verleih Historie</h5>
+    <div id="card_sec_title" class="card-header">  </div>
+
+    <div class="card-body">
+        <li class="list-group my-1">
+        <% for (const [key, value] of Object.entries(doc.wasWith)) {%> 
+
+            <a  class="my-2 list-group-item stretched-link text-decoration-none" href="<%= "/user/" + value  %>">
+                <p class=" text-muted card-title text-truncate "> Benutzer ID: <%= value %></p>          
+            </a>
+        <% } %> 
+        </li>
+    </div>
+
+  <div id="card_sec_title" class="card-footer">  </div>
+  <div id="card_header" class="card-footer">  </div>
+</div>

@@ -1,0 +1,79 @@
+<%# 
+
+This View renders Edit Forms for an Item
+
+Access data through @param { locals.doc.x } 
+
+@param { doc._id } Object unique ID
+@param { doc.name } 
+@param { doc.room }
+@param { doc.shelf }
+@param { doc.description }
+@param { doc.AlphNumId }
+@param { doc.qrSvg }
+@param { doc.isAvailable }
+@param { doc.takenTo }
+
+%> 
+ 
+
+<div class="list-group my-3"> 
+
+    <!-- Iterate through the Object and display edit Form for specific keys -->
+    <!-- Display editable Item Data with Hidden POST Form -->
+    <% for (const [key, value] of Object.entries(doc)) { %> 
+        
+        <% if ( key == "room" || key == "name" || key == "description" || key == "shelf" ) { %> 
+            <!-- Setup Links and Tagets for the collapsible Edit Form -->
+            <% let link = "#edit" + key; %> 
+            <% let target = "edit" + key; %> 
+                <!-- Button that open Hidden Form -->
+                <a href=<%- link %>  class="list-group-item list-group-item-action" data-bs-toggle="collapse">
+                    <% if (key == "name") { %> Name <% } %>
+                    <% if (key == "description") { %> Beschreibung <% } %>
+                    <% if (key == "room") { %> Raumnummer / Home Position <% } %>
+                    <% if (key == "shelf") { %> Regalnummer <% } %>
+                    
+                </a>
+
+                <!-- Hidden POST Form -->
+                <div class="collapse" id=<%- target %> >
+
+                    <form name="submitForm" method="POST" action="<%= "/item/update/" + doc._id %>" class="p-1">    
+                        <div class="row">
+
+                            <% if (key === "room" && doc.currentLocation != doc.room) { %>
+                                <p class="my-1"> Editieren nicht möglich! Komponente ist verliehen. </p>
+                            <% } else { %>
+                                <div class="col">
+                                    <input
+                                    type="text"
+                                    class="form-control"
+                                    name="<%= key %>"
+                                    value="<%= value %>"
+                                    placeholder="<%= value %>"
+                                    />
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary form-control" type="submit" > Ändern </button>
+                                </div>
+                            <% } %>
+
+                        </div>
+                    </form>
+
+                </div> 
+        <% } %>
+
+    <% } %>  
+
+    <!-- Hidden POST Button to Delete Route -->
+    <li class="list-group mt-2">
+        <a href="#delete" class="list-group-item list-group-item-action" data-bs-toggle="collapse">Komponente Löschen</a>
+        <div class="collapse" id="delete">
+            <form class="p-1" name="submitForm" method="POST" action="<%= "/item/delete/" + doc._id %>">    
+                <button class="btn btn-danger form-control" type="submit" >Unwiderruflich löschen</button>
+            </form>
+        </div>
+    </li>
+</div>

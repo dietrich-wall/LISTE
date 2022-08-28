@@ -1,0 +1,31 @@
+<%# 
+
+This View renders a List of Users
+
+1. Iterate through the passed Object @param { locals.doc }
+2. Access data through @param { value.x } 
+
+@param { value._id } Object unique ID
+@param { value.email } 
+
+%> 
+
+<%-include('./forms/search.user.ejs') %>
+
+<!-- iterate through the Object -->
+<% for (const [key, value] of Object.entries(doc)) {%> 
+  <div class="col p-1">
+    <!-- create one CSS card for each entrie in the passed Object -->
+    <div class="card">
+      <div id="card_header" class="card-header text-truncate"><%= value.email %></div>
+      <div id="card_sec_title" class="card-header">  </div>
+
+      <!-- place link to "item/details/:id" over the card -->
+      <a class="card-body stretched-link text-decoration-none" 
+      href = "<%= "/user/" + value._id  %>">
+            <h6 class="text-muted card-subtitle mb-2">Klasse: <%= value.group %></h6>
+            <h6 class="text-muted card-subtitle">Rolle: <%= value.role %></h6>
+      </a>
+    </div>
+  </div>
+<% } %> 

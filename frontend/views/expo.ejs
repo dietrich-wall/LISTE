@@ -1,0 +1,168 @@
+<!-- Titel -->
+<div class="row justify-content-center">
+  <div class="col-xl-10">
+    <h4 id="card_header" class="card-header" style="text-align: center;"> Willkommen zum Technikerforum 2022 </h4>
+    <div id="card_sec_title" class="card-header"></div>
+  </div>
+</div>  
+
+<div class="row mt-3 justify-content-center">
+  <div class="col-xl-10">
+    <!-- Tab Links -->
+    <ul class="nav nav-tabs" role="tablist">
+
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active text-secondary" role="tab" data-bs-toggle="tab" href="#expoLanding">
+          <i class="fa-solid fa-compass "></i> Übersicht
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a class="nav-link text-secondary" role="tab" data-bs-toggle="tab" href="#elektro">
+          <i class="fa-solid fa-microchip"></i> Elektro
+        </a>
+      </li>
+      
+      <li class="nav-item" role="presentation">
+        <a class="nav-link text-secondary" role="tab" data-bs-toggle="tab" href="#mechanik">
+          <i class="fa-solid fa-gears "></i> Maschinen
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a class="nav-link text-secondary" role="tab" data-bs-toggle="tab" href="#metall">
+          <i class="fa-solid fa-helmet-safety "></i></i> Metall
+        </a>
+      </li>
+
+    </ul>
+<!-- active -->
+
+    <!-- Tab body -->
+    <div class="tab-content">
+
+      <!-- Tab - Übersicht -->
+      <div class="tab-pane active" role="tabpanel" id="expoLanding">
+        <%- include('./partials/resources/expo/overview.expo.ejs') %>    
+      </div>
+
+      <%# no entry found msg %>
+      <% const noEntryMsg = "Dieser Fachgruppe wurden keine Projektgruppen hinzugefügt" %>  
+      <%# info msg - entrys sorted by %>
+      <% const infoMsgEntrySortedBy = "Einträge nach Etagen sortiert" %> 
+
+      <!-- Tab - Elektro  -->
+      <div class="tab-pane" role="tabpanel" id="elektro">
+        <div class="card bg-light my-3" >
+          <div id="card_header" class="card-header" style="text-align: center;"> </div>
+            <div id="card_sec_title" class="card-header" style="text-align: center;"> </div>
+            <h5  class="card-header" style="text-align: center; color: #112d4e;"> Projektgruppen der Fachrichtung <strong>Elektrotechnik</strong></h5>
+            <div class="container-fluid">
+            <div class="row pt-2">
+              <% if (typeof doc.elektro[0] === "undefined") { %>
+                <p class="col p-4" style="text-align: center;"><%= noEntryMsg %></p>
+              <% } else { %>
+              <% for (const [key, value] of Object.entries(doc.elektro)) {%> 
+                <div class="col p-2 ">
+                  <div class="card" style="min-width: 18rem;">
+                    <div id="card_header" class="card-header"><%= value.name %></div>
+                    <div id="card_sec_title" class="card-header">  </div>
+
+                      <a class="card-body stretched-link text-decoration-none" style="color: #112d4e;" 
+                      href="<%= "/expo/" + value._id  %>">                       
+                        <div class="card-text">Etage: <%= value.floor %></div>
+                        <div class="card-text" >Raum: <%= value.room %></div>         
+                      </a>
+                  </div>
+                </div>
+              <% } %>  
+              <% } %>  
+            </div>
+          </div>  
+
+          <div id="card_sec_title" class="card-footer">  </div>
+          <div id="card_header" class="card-footer">  </div>
+        </div>  
+      </div>
+
+      <!-- Tab - Mechanik  -->
+      <div class="tab-pane " role="tabpanel" id="mechanik">
+          <div class="card bg-light my-3" >
+            <h5 id="card_header" class="card-header" style="text-align: center;"> </h5>
+            <div id="card_sec_title" class="card-header" style="text-align: center;"></div>
+            <h5  class="card-header" style="text-align: center; color: #112d4e;"> Projektgruppen der Fachrichtung <strong>Maschinentechnik</strong></h5>
+            <div class="container-fluid">
+            <div class="row pt-2">
+              <% if (typeof doc.mechanik[0] === "undefined") { %>
+                <div class="col p-4" style="text-align: center;"><%= noEntryMsg %></div>
+              <% } else { %>
+              <% for (const [key, value] of Object.entries(doc.mechanik)) {%> 
+                <div class="col p-2 ">
+                  <div class="card" style="min-width: 18rem;">
+                    <div id="card_header" class="card-header"><%= value.name %></div>
+                      <div id="card_sec_title" class="card-header">  </div>
+
+                      <a class="card-body stretched-link text-decoration-none" style="color: #112d4e;" 
+                      href="<%= "/expo/" + value._id  %>">                       
+                        <div class="card-text">Etage: <%= value.floor %></div>
+                        <div class="card-text" >Raum: <%= value.room %></div>         
+                      </a>
+                  </div>
+                </div>
+              <% } %>  
+              <% } %>  
+            </div>
+          </div>
+
+          <div id="card_sec_title" class="card-footer">  </div>
+          <div id="card_header" class="card-footer">  </div>
+        </div>    
+      </div>
+
+      <!-- Tab - Metall  -->
+      <div class="tab-pane " role="tabpanel" id="metall">
+          <div class="card bg-light my-3" >
+            <h5 id="card_header" class="card-header" style="text-align: center;"> </h5>
+            <div id="card_sec_title" class="card-header" style="text-align: center;"> </div>
+            <h5  class="card-header" style="text-align: center; color: #112d4e;"> Projektgruppen der Fachrichtung <strong>Metallbau- und Gebäudetechnik</strong></h5>
+            <div class="container-fluid">
+            <div class="row pt-2">
+
+              <% if (typeof doc.metall[0] === "undefined") { %>
+                <div class="col p-4" style="text-align: center;"><%= noEntryMsg %></div>
+              <% } else { %>
+                <% for (const [key, value] of Object.entries(doc.metall)) {%> 
+                  <div class="col p-2 ">
+                    <div class="card" style="min-width: 18rem;">
+                      <div id="card_header" class="card-header"><%= value.name %></div>
+                        <div id="card_sec_title" class="card-header">  </div>
+                        <a class="card-body stretched-link text-decoration-none" style="color: #112d4e;" 
+                        href="<%= "/expo/" + value._id  %>">                       
+                          <div class="card-text">Etage: <%= value.floor %></div>
+                          <div class="card-text" >Raum: <%= value.room %></div>         
+                        </a>
+                    </div>
+                  </div>
+                <% } %>  
+              <% } %>  
+            </div>
+          </div>
+
+          <div id="card_sec_title" class="card-footer">  </div>
+          <div id="card_header" class="card-footer"></div>
+        </div>   
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<%- include('./partials/common/footer.ejs') %>
+
+<!-- <script>
+ $(function () { var a = $('[href=' + location.hash + ']'); a && a.tab('show'); });
+ $('.nav a').on('shown', function (e) { window.location = "#elektro"; })
+</script> -->

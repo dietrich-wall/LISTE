@@ -1,0 +1,68 @@
+
+<!-- Login Form -->
+<form
+  class="text-center my-4"
+  id="login"
+  method="POST"
+  action="/login"
+  style="text-align: center">
+
+  <div class="illustration"></div>
+
+    <!-- Email Field -->
+    <div class="mb-3">
+      <input
+        class="form-control"
+        type="email"
+        name="email"
+        placeholder="BBS-ME Mail"
+        value=""
+      />
+    </div>
+
+    <!-- Password Field -->
+    <div class="mb-3">
+      <input
+        class="form-control"
+        type="password"
+        name="password"
+        placeholder="Passwort"
+        value=""
+      />
+    </div>
+
+    <!-- Check Box - Stay logged In-->
+    <div class="mb-3 ">
+      <input type="checkbox" class="form-check-input" id="rememberUser" />
+      <label class="form-check-label" for="check">Ich bleibe über Nacht</label>
+    </div>
+    
+    <!-- Login Button -->
+    <div class="mb-3">
+      <button class="btn btn-primary form-control" type="submit">Log In</button>
+    </div>
+
+    
+</form>
+
+<!-- POST Form - Change Password -->
+<a href="#forgot" class="forgot mt-3" data-bs-toggle="collapse">Passwort zurücksetzen</a>
+<div class="collapse" id="forgot">
+    <form name="submitForm" method="POST" action="/password-change-request" >    
+        <div class="row my-2">
+            <div class="col">
+                <input
+                type="email"
+                class="form-control"
+                placeholder="Email"
+                name="email"
+                />
+            </div>
+            <div class="col">
+                <button class="btn btn-outline-secondary form-control" type="submit" > Reset Link zusenden </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

@@ -1,0 +1,58 @@
+
+<div class="row justify-content-center pt-1 pb-2">
+    <div class="col-md-10 ">
+
+        <div class="container">
+            <form method="POST" action="/user/user"  class="form-inline mt-2">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-xl-6">
+                        <!-- search type selection -->
+                        <div class="form-check form-check-inline my-2">
+                            <input class="form-check-input" type="radio" name="searchType" id="inlineRadio1" value="group" checked>
+                            <label class="form-check-label" for="inlineRadio1">Klasse</label>
+                        </div>
+                        <div class="form-check form-check-inline my-2">
+                            <input class="form-check-input" type="radio" name="searchType" id="inlineRadio2" value="email">
+                            <label class="form-check-label" for="inlineRadio2">Email</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-10">
+                                <!-- input field -->
+                                <input id="searchingUser" name="search" class="form-control" 
+                                type="search" value=""
+                                placeholder="Benutzer suchen...">
+                                <!-- search submit button -->
+                            </div>
+
+                            <div class="col-2">   
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-magnifying-glass fa-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- only submit if search input is not empty -->
+<!-- <script>
+
+function validateInput() {
+    if (document.getElementById("searchingUser").value == "") {
+        return false;
+    } else {
+        return true;
+    }
+}
+</script> -->

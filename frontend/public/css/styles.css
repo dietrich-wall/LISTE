@@ -1,0 +1,34 @@
+#funktionen_lp {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+#logo_navbar {
+  transform: scale(0.9);
+}
+
+div.hidden {
+  display: none;
+}
+
+/* applie to all header classes */
+/* .card-header {
+  padding: 15px;
+} */
+
+#btn_bg_BBSME {
+  background: #3f72af;
+}
+
+/* für das technikerforum */
+
+#card_sec_title {
+  background: #dbe2ef;
+  color: #112d4e;
+}
+
+#card_header {
+  background: #3f72af;
+  color: #dbe2ef;
+  padding: 15px;
+}

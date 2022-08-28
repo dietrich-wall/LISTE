@@ -1,0 +1,56 @@
+<!-- main card -->
+<div class="card bg-light my-3" >
+    <h5 id="card_header" class="card-header">Benutzerdaten und Einstellungen</h5>
+    <div id="card_sec_title" class="card-header"> </div>
+
+    <div class="card-body">   
+            <!-- Editor Tab - only for admins -->
+            <% if (user.role === "admin" && !locals.user._id.equals(doc._id) ) { %>
+                <a href="#edit" class="list-group-item list-group-item-action mt-3" data-bs-toggle="collapse">Benutzerdaten bearbeiten</a>
+                <div class="collapse" id="edit"> 
+                    <%-include('./forms/edit.user.ejs') %>
+                </div> 
+            <% } %>   
+
+            <!-- User Data -->
+            <div class="list-group"> 
+                <li class="list-group-item"><%= doc.email %></li>
+                <li class="list-group-item">Klasse: <%= doc.group %></li>
+                <li class="list-group-item">Rolle: <%= doc.role %></li>
+
+                <!-- POST Form - Change Password -->
+                <a href="#changepw" class="list-group-item list-group-item-action mt-3" data-bs-toggle="collapse">Passwort ändern</a>
+                <div class="collapse" id="changepw">
+                    <form name="submitForm" method="POST" action="<%= "/user/changepw/" + doc._id %>" >    
+                        <div class="row my-2">
+                            <div class="col">
+                                <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Passwort"
+                                name="password"
+                                />
+                            </div>
+
+                            <!-- Password Confirmation Field -->
+                            <div class="col">
+                                <input
+                                class="form-control"
+                                type="password"
+                                name="passwordConfirmation"
+                                placeholder="Passwort wiederholen"
+                                />
+                            </div>
+                            
+                            <div class="mt-2">
+                                <button class="btn-outline-secondary form-control" type="submit" > Bestätigen </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+</div>
+  <div id="card_sec_title" class="card-footer">  </div>
+  <div id="card_header" class="card-footer">  </div>
+

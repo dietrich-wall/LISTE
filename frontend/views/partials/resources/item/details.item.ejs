@@ -1,0 +1,93 @@
+<%# 
+
+This View renders the description of a Single Items
+
+Access data through @param { locals.doc.x } 
+
+@param { doc._id } Object unique ID
+@param { doc.name } 
+@param { doc.room }
+@param { doc.shelf }
+@param { doc.description }
+@param { doc.AlphNumId }
+@param { doc.qrSvg }
+@param { doc.isAvailable }
+@param { doc.takenTo }
+
+%> 
+<div class="card bg-light my-3" >
+    <h5 id="card_header" class="card-header"><%= doc.name %></h5>
+    <div id="card_sec_title" class="card-header">  </div>
+
+    <div class="card-body">   
+        <!-- Editor Dropdown -->
+        <% if (typeof user != undefined && (user.role === "editor" || user.role === "admin")) { %>  
+            <a href="#edit" class="list-group-item list-group-item-action p-2" data-bs-toggle="collapse">Komponentendaten bearbeiten</a>
+            <div class="collapse" id="edit"> 
+                <%-include('./forms/edit.item.ejs') %>
+            </div> 
+        <% } %> 
+
+        <div class="row my-2">
+
+        
+
+            <div class="col-md mt-2">
+                <div class="card">
+                    <p id="card_sec_title" class="card-header"> Stammdaten </p>
+                    <div class="card-body p-1">
+                        
+                        <!-- item data -->
+                        <div class="card-text p-1"> ID: <%= doc.AlphNumId %> </div>
+                        <div class="card-text p-1"> Raum: <%= doc.room %> </div>
+                        <div class="card-text p-1"> Regal: <%= doc.shelf %></div>                             
+                    </div>
+                </div>
+                <%- include('./forms/rent.item.ejs') %>
+
+                <!-- Listing of Item Details -->
+                
+            </div>
+
+            <!-- QR Code picture -->
+            <!-- <div class="col p-1">
+                <div ><%#- doc.qrSvg %></div>
+            </div> -->
+
+            <!-- picture -->
+            <div class="col-md-8 p-2">
+                <img class="w-100 d-block" src="/items/img/<%- doc.img %>">
+            </div>
+
+
+        <!-- <div class="row">                           
+            <div class="col py-3">
+                <img class="w-100 d-block" src="/items/img/<%- doc.img %>">
+            </div>
+        </div> -->
+
+        </div>
+
+        <!-- Item Description -->
+        <div class="row my-3">
+            <div class="col">
+                <div class="card">
+                    <div id="card_sec_title" class="card-header"> Beschreibung </div>
+                    <div class="card-body"><%- doc.description %></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- report -->
+        <div class="row my-3">
+            <div class="col">
+                <%- include('./forms/report.item.ejs') %>
+            </div>
+        </div>
+    </div>
+
+  <div id="card_sec_title" class="card-footer">  </div>
+  <div id="card_header" class="card-footer">  </div>
+</div>
+
+

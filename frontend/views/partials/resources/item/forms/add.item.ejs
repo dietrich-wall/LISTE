@@ -1,0 +1,129 @@
+<%# 
+
+Submission Form to Register or Create a User (DB entry)
+
+Make a POST request to the endpoint "/user/form/add"
+
+@param { name } 
+@param { room }
+@param { shelf }
+@param { description }
+
+%> 
+<h3 class="mt-4">Komponente erstellen</h3>
+<p class="alert alert-warning p-1">Alle Angaben sind erforderlich</p>
+
+<!-- Submission Form -->
+<form class="text-center my-4" method="POST" action="/item/form/add" enctype="multipart/form-data" onsubmit="return validateInput()" style="text-align: center">
+
+  <div class="illustration">
+
+    <!-- Name field -->
+    <div class="mb-3">
+      <input id="inputGroupName" class="form-control" type="text" name="name" placeholder="Name"/>
+    </div>
+
+    <!-- description field -->
+    <div class="mb-3">
+    <textarea id="inputGroupDescription" class="form-control" rows="2" id="inputGroupDescription" name="description" placeholder="Beschreibung">Einfache Absätze können durch <br> hinzugefügt werden.</textarea>
+  </div>
+
+    <!-- room field -->
+    <div class="mb-3">
+      <input id="inputGroupRoom" class="form-control" type="text" name="room" placeholder="Raumnummer"/>
+    </div>
+
+    <!-- shelf field -->
+    <div class="mb-3">
+      <input id="inputGroupShelf" class="form-control" type="text" name="shelf" placeholder="Regalnummer"/>
+    </div>
+
+    <!-- image upload -->
+    <div class="input-group mb-3">      
+        <input type="file" name="uploaded_img" class="custom-file-input input-group-append form-control" id="inputGroupImg">
+        <div class="input-group-append">
+          <label class="input-group-text bg-warning" for="inputGroupSelect01">.jpeg oder .png</label>
+        </div>
+      </div>
+    
+    <!--  -->
+    <div id="categoryTag1" class="list-group mb-3"> 
+      <p class="list-group-item">Hauptkategorie </p>
+      <div id="categoryTags1">   
+        <% for (const [key, value] of Object.entries(doc)) {%> 
+          <% if (value.level === 1) { %>
+            <!-- Check Box - Select category level -->
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="categoryTags" value="<%=value._id%>">
+              <label class="form-check-label" for="inlineCheckbox1"><%= value.name %> </label>
+            </div>
+          <% } %>
+        <% } %> 
+      </div>   
+    </div> 
+
+    <div id="categoryTag2" class="list-group mb-3"> 
+      <p class="list-group-item">Oberkategorie</p>
+      <div  id="categoryTags2">   
+        <% for (const [key, value] of Object.entries(doc)) {%> 
+          <% if (value.level === 2) { %>
+            <!-- Check Box - Select category level -->
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="categoryTags" value="<%=value._id%>">
+              <label class="form-check-label" for="inlineCheckbox1"><%= value.name %> </label>
+            </div>
+          <% } %>
+        <% } %> 
+      </div>   
+    </div> 
+
+    <div id="categoryTag3" class="list-group mb-3"> 
+      <p class="list-group-item">Unterkategorie</p>
+      <div  id="categoryTags3">   
+        <% for (const [key, value] of Object.entries(doc)) {%> 
+          <% if (value.level === 3) { %>
+            <!-- Check Box - Select category level -->
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="categoryTags" value="<%=value._id%>">
+              <label class="form-check-label" for="inlineCheckbox1"><%= value.name %> </label>
+            </div>
+          <% } %>
+        <% } %> 
+      </div>   
+    </div> 
+
+    <!-- Submit Button -->
+    <div class="mb-3">
+      <button class="btn btn-primary border form-control" type="submit" >Hinzufügen</button>
+    </div>
+
+  </div>
+</form>
+
+
+<!-- prevent empty file input -->
+<script>
+
+  function validateInput() {
+    let img = document.getElementById("inputGroupImg").value;
+    let name = document.getElementById("inputGroupName").value;
+    let shelf = document.getElementById("inputGroupShelf").value;
+    let description = document.getElementById("inputGroupDescription").value;
+    let room = document.getElementById("inputGroupRoom").value;
+
+    if (name == "" || shelf == ""  || description == "" || room == "") {
+        return false;
+      } 
+      
+      if (!img.match(/.jpg$/)) {
+        if (!img.match(/.jpeg$/)) {
+          if (!img.match(/.png$/)) {
+            return false;
+          }
+        }
+      }
+
+      return true;
+      
+  }
+  </script>

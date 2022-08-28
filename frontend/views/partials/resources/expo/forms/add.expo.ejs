@@ -1,0 +1,136 @@
+
+<h3 class="pt">Projektgruppe erstellen</h3>
+<p class="alert alert-warning p-1">Alle Angaben sind erforderlich</p>
+
+
+<!-- Submission Form -->
+<form class="text-center my-3" method="POST" action="/expo/form/add" enctype="multipart/form-data" onsubmit="return validateInput()" style="text-align: center">
+
+  <div class="illustration">
+    
+    <!-- division -->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Fachgruppe</label>
+      </div>
+      <select name="division" class="custom-select form-control" id="inputGroupSelect01">
+        <option value="Elektro">Elektrotechnik</option>
+        <option value="Mechanik">Maschinentechnik</option>
+        <option value="Metall">Metallbau- und Gebäudetechnik</option>
+      </select>
+    </div>
+
+
+    <% for( let index = 0; index < membersCount; index++ ) { %>
+        <!-- Teilnemer -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Teilnehmer <%= index +1 %> </label>
+        </div>
+        <input class="form-control" type="text" id="inputGroupMembers" name="members" placeholder="Vor und Nachname"/>
+        <input class="form-control" type="email" id="inputGroupEmails" name="emails" placeholder="Email"/>
+      </div>
+    <% } %> 
+
+    <h5 class="pt-2">Projektbezeichnung</h5>
+    <!-- Name field -->
+    <div class="input-group pt-1">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Projektname  </label>
+      </div>
+      <input class="form-control" type="text" id="inputGroupName" name="name" placeholder="Titel der Projektarbeit"/>
+    </div>
+
+    <!-- description field -->
+    <div class="input-group pt-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Beschreibung</label>
+      </div>
+      <textarea class="form-control" rows="4" id="inputGroupDescription" name="description">Einfache Absätze können durch <br> hinzugefügt werden.</textarea>
+    </div>
+
+    <!-- pdf handout upload  -->
+    <h5 class="pt-3">Flyer oder Handout</h5>
+    <div class="input-group">
+        <input type="file" name="uploaded_pdf" class="custom-file-input input-group-append form-control" id="inputGroupPdf">
+        <div class="input-group-append">
+          <label class="input-group-text bg-warning" for="inputGroupSelect01">.pdf</label>
+        </div>
+      </div>
+    <!-- image upload -->
+    <h5 class="pt-3">Repräsentatives Bild der Projektarbeit</h5>
+    <div class="input-group">      
+        <input type="file" name="uploaded_img" class="custom-file-input input-group-append form-control" id="inputGroupImg">
+        <div class="input-group-append">
+          <label class="input-group-text bg-warning" for="inputGroupSelect01">.jpeg oder .png</label>
+        </div>
+      </div>
+
+    <!-- floor -->
+    <h5 class="pt-4">Ausstellungsort</h5>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Etage</label>
+      </div>
+      <select name="floor" class="custom-select form-control" id="inputGroupSelect01">
+        <option value="UG">UG</option>
+        <option value="EG">EG</option>
+        <option value="1.OG">1.OG</option>
+        <option value="2.OG">2.OG</option>
+        <option value="3.OG">3.OG</option>
+      </select>
+    </div>
+    
+    <!-- room field -->
+    <div class="input-group pb-4">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Raum  </label>
+      </div>
+      <input class="form-control" type="text" id="inputGroupRoom" name="room" placeholder="Raumnummer"/>
+    </div>
+
+
+
+      <!-- Submit Button -->
+    <div class="mt-3"> 
+      <button class="btn btn-primary border form-control" type="submit" >Hinzufügen</button>
+    </div>
+
+    
+
+  </div>
+</form>
+
+
+<!-- prevent empty file input -->
+<script>
+
+  function validateInput() {
+    let name = document.getElementById("inputGroupName").value;
+    let members = document.getElementById("inputGroupMembers").value;
+    let emails = document.getElementById("inputGroupEmails").value;
+    let description = document.getElementById("inputGroupDescription").value;
+    let room = document.getElementById("inputGroupRoom").value;
+
+      let pdf = document.getElementById("inputGroupPdf").value;
+      let img = document.getElementById("inputGroupImg").value;
+      
+      if (pdf == "" || img == "" || name == "" || members == "" || emails == "" || description == "" || room == "") {
+        return false;
+      } 
+      if (!pdf.match(/.pdf$/)) {
+        return false;
+      }
+
+      if (!img.match(/.jpg$/)) {
+        if (!img.match(/.jpeg$/)) {
+          if (!img.match(/.png$/)) {
+            return false;
+          }
+        }
+      }
+
+      return true;
+      
+  }
+  </script>
